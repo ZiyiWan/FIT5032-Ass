@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>After Class!</h1>
+    <p class="lead">Enjoy your after-school life. Leaving a message or booking a home visit here!</p>
+</div>
+@if (User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Forum</h2>
+            <p>
+                Exchange your ider with your partners here!
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        @if (User.IsInRole("student"))
+        {
+            <div class="col-md-4">
+                <h2>Booking HomeVisit</h2>
+                <p>If you need face to face help, booking your own homevisit here!</p>
+                <p><a class="btn btn-default" href="https://localhost:44394/HomeVisits">Booking Here &raquo;</a></p>
+            </div>
+        }
+    </div>
+}
