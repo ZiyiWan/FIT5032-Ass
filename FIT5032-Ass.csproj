@@ -396,6 +396,8 @@
     <Content Include="Content\fullcalendar.min.css" />
     <Content Include="Content\fullcalendar.print.css" />
     <Content Include="Content\fullcalendar.print.min.css" />
+    <Content Include="Content\HomeCss.css" />
+    <Content Include="Content\StyleSheetForLayout.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -734,6 +736,7 @@
     <Content Include="Views\Images\Details.cshtml" />
     <Content Include="Views\Images\Edit.cshtml" />
     <Content Include="Views\Images\Index.cshtml" />
+    <Content Include="Utils\confirm.docx" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Uploads\" />

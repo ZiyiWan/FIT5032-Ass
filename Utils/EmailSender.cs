@@ -21,10 +21,10 @@ namespace FIT5032_Week08A.Utils
             var to = new EmailAddress(toEmail, "");
             var subject = "Confirm!";          
             var msg = MailHelper.CreateSingleEmail(from, to, subject, body, "");
-            var bytes = File.ReadAllBytes("D:\\study\\confirm.docx");
+            var bytes = File.ReadAllBytes("confirm.docx");
             var file = Convert.ToBase64String(bytes);
             msg.AddAttachment("confirm.docx", file);
-            var response = client.SendEmailAsync(msg);
+            var response = client.SendEmailAsync(msg); 
         }
 
     }

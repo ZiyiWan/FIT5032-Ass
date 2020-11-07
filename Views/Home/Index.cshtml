@@ -1,28 +1,80 @@
-﻿@{
+﻿@using FIT5032_Ass.Models
+@model LoginViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
-    <h1>After Class!</h1>
-    <p class="lead">Enjoy your after-school life. Leaving a message or booking a home visit here!</p>
+    <h1 style="color:#FA8072">After Class!</h1>
 </div>
+@if (!User.Identity.IsAuthenticated)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <section id="loginForm">
+                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <h4>Login Here and view more!</h4>
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <div class="checkbox">
+                                @Html.CheckBoxFor(m => m.RememberMe)
+                                @Html.LabelFor(m => m.RememberMe)
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="登录" class="btn btn-default" />
+                        </div>
+                    </div>
+                    <p>
+                        @Html.ActionLink("注册为新用户", "Register")
+                    </p>
+                    @* 在为密码重置功能启用了帐户确认后，启用此项
+                        <p>
+                            @Html.ActionLink("忘记了密码?", "ForgotPassword")
+                        </p>*@
+                }
+            </section>
+        </div>
+    </div>
+}
+
 @if (User.Identity.IsAuthenticated)
 {
     <div class="row">
         <div class="col-md-4">
-            <h2>Forum</h2>
+            <h2>Shining Moment</h2>
             <p>
-                Exchange your ider with your partners here!
+                Browse the wonderful moments of the class
             </p>
-            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+            <p><a class="btn btn-default" href="https://localhost:44383/Images">See! &raquo;</a></p>
         </div>
-        @if (User.IsInRole("student"))
-        {
             <div class="col-md-4">
                 <h2>Booking HomeVisit</h2>
                 <p>If you need face to face help, booking your own homevisit here!</p>
-                <p><a class="btn btn-default" href="https://localhost:44394/HomeVisits">Booking Here &raquo;</a></p>
-            </div>
-        }
+                <p><a class="btn btn-default" href="https://localhost:44383/HomeVisits">Booking Here &raquo;</a></p>
+            </div>      
     </div>
+}
+<link href="~/Content/HomeCss.css" rel="stylesheet" />
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
